@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LRM - A Shiny App</title>
+  <meta charset="utf-8">
+  <meta name="description" content="LRM - A Shiny App">
+  <meta name="author" content="Azmi Mohamed Ridwan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/solarized_light.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>LRM - A Shiny App</h1>
+    <h2>Final project for Coursera 'Developing Data Products' course</h2>
+    <p>Azmi Mohamed Ridwan<br/>Free Agent</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>LRM is a web application which allows the user to interactively experiment with Linear Regression Modelling. The user can select any combination of the available variables and review the result of the model in the display area. </p>
+
+<p>The features of the application are:</p>
+
+<ul>
+<li>Select any combination of variables for the modelling</li>
+<li>Select the level of detail for the output report (without recomputing the model)</li>
+<li>Visualization of the Residuals</li>
+</ul>
+
+<p>In this application, the model uses the <code>mtcars</code> dataset to predict mileage as a function of the other available variables. However, this application can be easily modified to use other datasets as the documentation is very clear.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>How to use</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li><p>When the application is first launched, a default model with only one feature <code>cyl</code> is executed. The full output from the lm function is displayed on the main display of the application.</p></li>
+<li><p>The user can modify the model by selecting as my features as desired from the checkboxes shown on the left panel of the application. The user can select any combination of features (with a minimum of 1 feature.)</p></li>
+<li><p>The user can also modify the amount of detail for the report. In addition to the full output, the users can also display selected outputs such as the coefficients, residuals or r-squared values. This is done without re-calculating the model which helps to save computational resources.</p></li>
+<li><p>The display is updated once the Submit button has been clicked.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Example plot of Residuals</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(ggplot2)
+data(mtcars)
+fit &lt;- lm(mpg~cyl,data=mtcars)
+par(mfrow=c(2,2),mar=c(2,2,2,2))
+plot(fit)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>How to customise this app to your model</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To change the model in this application requires edits to just 5 location in the Shiny app. These locations are identified by the following comment prefix which can be found with a simple search.</p>
+
+<pre><code># MODIFY:
+</code></pre>
+
+<p>The requires changes required are:</p>
+
+<p>In ui.R</p>
+
+<ul class = "build incremental">
+<li>List of predictors</li>
+<li>Text to provide a description of the model </li>
+</ul>
+
+<p>In server.R</p>
+
+<ul class = "build incremental">
+<li>Name of the dataset (2 locations)</li>
+<li>Name of the dependant variable which is used to build the model equation</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='How to use'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Example plot of Residuals'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How to customise this app to your model'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
